@@ -1,0 +1,36 @@
+{
+  "name": "curso-coder",
+  "version": "1.0.0",
+  "description": "1 entrega projecto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " nodemon src/index.js",
+    "start": "node index.js"
+  },
+  "type": "commonjs",
+  "keywords": [
+    "EXPRESS",
+    "NPM"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolasbernardes/Curso-Backend-DESDE-DELL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicolasbernardes/Curso-Backend-DESDE-DELL/issues"
+  },
+  "homepage": "https://github.com/nicolasbernardes/Curso-Backend-DESDE-DELL#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "express": "^4.17.2",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "underscore": "^1.13.2"
+  }
+}
