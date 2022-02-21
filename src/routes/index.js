@@ -2,10 +2,10 @@ const { Router } = require('express');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
 const router = Router();
-/* const _ = require('underscore') */
 const administrator = false;
 const fs_producto = require("../outra/produto") 
 /* const textos = require('../sample.json'); */ //obtener archivo json
+/* const _ = require('underscore') */
 
 
 app.delete("/:id", (req, res, next) => {

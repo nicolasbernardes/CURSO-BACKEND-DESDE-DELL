@@ -80,7 +80,7 @@ module.exports = class Productos {
         return 1;
       }
     } catch (err) {
-      console.log("Error de lectura: ", err);
+      console.log("Error", err);
     }
   }
   async save(producto) {
@@ -99,7 +99,7 @@ module.exports = class Productos {
         this.escribir(productos);
         return producto.id; 
       } else {
-        throw "No se recibio";
+        throw "Error";
       }
     } catch (err) {
       console.warn("Error", err);

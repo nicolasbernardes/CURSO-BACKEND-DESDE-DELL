@@ -44,7 +44,7 @@ app.get("/:id/productos", (req, res, next) => {
 
   try {
     const { id } = req.params;
-    const fscart = new fs_carrito(); // destructuracion de req.body
+    const fscart = new fs_carrito(); 
     const productosEnCarro = await fscart.showProductsOfCart(id);
 
     if (productosEnCarro) {
@@ -76,7 +76,7 @@ app.delete("/:id", (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const fscart = new fs_carrito(); // destructuracion de req.body
+    const fscart = new fs_carrito(); 
     const resultado = await fscart.deleteById(id);
     if (resultado === 400) {
       throw resultado;
