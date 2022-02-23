@@ -10,7 +10,7 @@ app.delete("/:id/productos/:id_prod", (req, res, next) => {
   console.log(`Intentando remover producto ${id_prod} del carrito ${id} `);
 
   const fscart = new carrinho(); 
-  const resultado = await fscart.removeProductToCart(id, id_prod);
+  const resultado = await fscart.removerCarrito(id, id_prod);
 
   res.status(200).json({
     code: 200,
@@ -25,7 +25,7 @@ app.post("/:id/productos", (req, res, next) => {
   const { idproducto } = req.body;
 
   const fscart = new carrinho(); 
-  const resultado = await fscart.addProductToCart(id, idproducto);
+  const resultado = await fscart.agregarCarrito(id, idproducto);
   if (resultado) {
     res.status(200).json({
       code: 200,
@@ -45,7 +45,7 @@ app.get("/:id/productos", (req, res, next) => {
   try {
     const { id } = req.params;
     const fscart = new carrinho(); //
-    const productosEnCarro = await fscart.showProductsOfCart(id);
+    const productosEnCarro = await fscart.mostrarCarrito(id);
 
     if (productosEnCarro) {
       return res.status(200).json({
@@ -100,31 +100,31 @@ app.delete("/:id", (req, res, next) => {
 
 app.post("/:id/productos", (req, res, next) => {
 
-    try {
-        const { id } = req.params;
-        const cart = new carrinho(); 
-        const productos = await cart.showProductsOfCart(id);
-    
-        if (productos) {
-          return res.status(200).json({
-            code: 200,
-            productos,
-          });
-        } else {
-          throw "No hay productos";
-        }
-      } catch (error) {
-        if (error === "No hay productos") {
-          return res.status(400).json({ code: 400, message: error });
-        } else {
-          console.log("Error", error);
-          return res
-            .status(400)
-            .json({ code: 400, message: "Error" });
-        }
-      }
+  try {
+    const nCarrt = {
+      timestamp: Date.now(),
+      productos: [],
+    };
+
+    const fscart = new carrinho();
+    const resultado = await fscart.save(nCarrt);
+    return res.status(200).json({
+      code: 200,
+      message: `Nuevo carrito`,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    return res.status(400).json({
+      code: 400,
+      message: `Error`,
+    });
+  }
 
 });
+
+
+
+
 
 module.exports = app;
 
