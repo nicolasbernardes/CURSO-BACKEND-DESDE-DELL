@@ -3,7 +3,7 @@ const req = require('express/lib/request');
 const res = require('express/lib/response');
 const router = Router();
 const administrator = false;
-const fs_producto = require("../outra/produto") 
+const producto = require("../outra/produto") 
 /* const textos = require('../sample.json'); */ //obtener archivo json
 /* const _ = require('underscore') */
 
@@ -13,7 +13,7 @@ app.delete("/:id", (req, res, next) => {
         try {
           const { id } = req.params;
     
-          const fsprod = new fs_producto(); 
+          const fsprod = new producto(); 
           const resultado = await fsprod.deleteById(id);
           if (resultado === 400) {
             throw resultado;
@@ -64,7 +64,7 @@ app.put("/:id", (req, res, next) => {
             newProduct.stock = stock;
           }
     
-          const fsprod = new fs_producto(); // destructuracion de req.body
+          const fsprod = new producto(); 
           const result = await fsprod.updateById(id, newProduct);
     
           console.log("..", result);
@@ -94,7 +94,7 @@ app.post("/", (req, res, next) => {
             precio: precio,
             stock: stock,
           };
-          const fsprod = new fs_producto(); 
+          const fsprod = new producto(); //
           const resultado = await fsprod.save(newProduct);
           return res.status(200).json({
             code: 200,
@@ -119,7 +119,7 @@ app.post("/", (req, res, next) => {
 
 app.get("/", (req, res, next) => {
     try {
-        const fsprod = new fs_producto(); 
+        const fsprod = new producto(); //
         const productos = await fsprod.getAll();
         if (productos === undefined) {
           throw "No hay articulo";
@@ -140,14 +140,14 @@ app.get("/:id", (req, res, next) => {
     const { id } = req.params;
 
     try {
-      const fsprod = new fs_producto();
-      const producto = await fsprod.getById(id);
-      if (producto === undefined) {
+      const fsprod = new producto(); 
+      const otroProducto = await fsprod.getById(id);
+      if (otroProducto === undefined) {
         throw "No hay articulo!";
       } else {
         return res.status(200).json({
           code: 200,
-          producto,
+          otroProducto,
         });
       }
     } catch (error) {
